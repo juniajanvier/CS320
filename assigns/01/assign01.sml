@@ -60,6 +60,23 @@ and then compute the size of the converted list
 //
 *)
 
+fun xlist_size(xs: 'a xlist): int = 
+| xlist_size( l :: l' ) = length(l) + xlist_size(l');
+
+xlist_size[ [5], [4], [3], [2,1] ];
+
+fun
+strapp
+(xs: string)
+(ys: string): string =
+let
+val nx = strlen(xs)
+fun helper(i0: int): string =
+if i0 >= nx then ys else str(strsub(xs, i0)) ^ helper(i0+1)
+in
+  helper(0)
+end (* end-of-[fun strapp] *)
+
 (* ****** ****** *)
 
 (*
@@ -79,6 +96,8 @@ then do subscripting.
 //
 *)
 
+fun xlist_sub(xs: 'a xlist, i0: int): 'a
+
 (* ****** ****** *)
 
 (*
@@ -97,6 +116,8 @@ In particular, your implementation should guarantee:
 3. 'xs' and 'ys' use the same number of 'mylist_append'
 //
 *)
+
+fun xlist_remove_reverse(xs: 'a xlist): 'a xlist
   
 (* ****** ****** *)
 
